@@ -1,6 +1,7 @@
 # Amazon-Mws-Repricing
 Amazon MWS Repricing Helper Classes
 
+### Getting Inventory Data:
 Usage for getting the Inventory Data:
 ```
 $config = new \Twinsen\AmazonMwsRepricing\Models\MwsConfigModel();
@@ -18,6 +19,38 @@ print_r($inventory[0]);
 Feel free to implement the MwsConfigInterface,for passing the Configuration.
 
 
+
+
+### Getting Product Price updates:
+1. Register a AWS Account
+
+2. Create a IAM User,grant SQS Support to it
+
+3. Create SQS Queue
+
+3. Use following Tutorial : http://docs.developer.amazonservices.com/en_IT/subscriptions/Subscriptions_ReceivingNotifications.html to give acess to the Amazon MWS
+
+4. Use Mws to put the Key on it:
+
+```
+$mwsService = new \Twinsen\AmazonMwsRepricing\MwsSubscriptionService();
+$mwsService->connect($mwsConfig);
+$mwsService->registerDestination('https://sqs.eu-central-1.amazonaws.com/***');
+$mwsService->createSubscription('https://sqs.eu-central-1.amazonaws.com/***');
+```
+
+5. Look at the Queue in Console Manager
+
+6. If you want to know the Format,use following Link
+https://gist.github.com/hakanensari/9f3e14d18a44f0d1c153
+
+### Todo: Implement Price Updates Push
+
+use the following Api to pass the Prices back:
+http://docs.developer.amazonservices.com/en_US/feeds/Feeds_SubmitFeed.html
+
+
+### Getting Prices (deprecated and not working anymore due to Amazon Update)
 For Getting the Price Information you can use 2 Different Approaches:
 1. Using the MWS Product Api
 ```
@@ -47,27 +80,6 @@ echo $paaService->debugResponse($response);
 
 
 
-Getting Prices(Finally)
-1. Register a AWS Account
-2. Create a IAM User,grant SQS Support to it
-3. Create SQS Queue
-3. Use following Tutorial : http://docs.developer.amazonservices.com/en_IT/subscriptions/Subscriptions_ReceivingNotifications.html to give acess to the Amazon MWS
-4. Use Mws to put the Key on it:
-
-```
-$mwsService = new \Twinsen\AmazonMwsRepricing\MwsSubscriptionService();
-$mwsService->connect($mwsConfig);
-$mwsService->registerDestination('https://sqs.eu-central-1.amazonaws.com/***');
-$mwsService->createSubscription('https://sqs.eu-central-1.amazonaws.com/***');
-```
-5. Look at the Queue in Console Manager
-6. If you want to know the Format,use following Link
-https://gist.github.com/hakanensari/9f3e14d18a44f0d1c153
-
-
-Another tnteressting Projects to Watch:
+#### Another interessting Projects related to the Project:
 https://github.com/wp-plugins/wp-lister-for-amazon/blob/0cfdc6f7e143454ab5ed6b0b12b7d4272250fb6e/classes/helper/WPLA_FeedDataBuilder.php
-
-
-
 
