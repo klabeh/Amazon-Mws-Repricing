@@ -1,5 +1,5 @@
 {
-  "name": "twinsen/amazon-mws-repricing",
+  "name": "klabeh/amazon-mws-repricing",
   "description": "Amazon Repricing Helper Classes",
   "minimum-stability": "stable",
   "license": "GNU3",
@@ -12,7 +12,7 @@
   "require": {
     "plugmystore/amazon-mws-feeds": "dev-master",
     "parsecsv/php-parsecsv": "0.4.5",
-    "raffw/mws-product-api": "dev-master",
+    "klabeh/mws-product-api": "dev-master",
     "exeu/apai-io": "dev-master",
     "twinsen/mws-subscription-api":"dev-master",
     "aws/aws-sdk-php":"~3.0",
